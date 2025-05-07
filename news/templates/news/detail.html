@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ news.title }}</title>
+</head>
+<body>
+    <a href="{% url 'news_index' %}">← Назад к списку</a>
+    <h1>{{ news.title }}</h1>
+    <p><small>Опубликовано: {{ news.published_at }}</small></p>
+    <div>
+        {{ news.content|linebreaks }}
+    </div>
+</body>
+</html>

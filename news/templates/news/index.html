@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Новости</title>
+</head>
+<body>
+    <h1>Последние новости</h1>
+
+    {% for news in news_list %}
+        <article>
+            <h2><a href="{% url 'news_detail' slug=news.slug %}">{{ news.title }}</a></h2>
+            <p><small>Опубликовано: {{ news.published_at }}</small></p>
+            <p>{{ news.content|truncatechars:200 }}</p>
+        </article>
+        <hr>
+    {% empty %}
+        <p>Новостей пока нет.</p>
+    {% endfor %}
+</body>
+</html>
