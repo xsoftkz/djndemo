@@ -1,21 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Новости</title>
-</head>
-<body>
-    <h1>Последние новости</h1>
+{% extends "base.html" %}
 
-    {% for news in news_list %}
-        <article>
-            <h2><a href="{% url 'news_detail' slug=news.slug %}">{{ news.title }}</a></h2>
-            <p><small>Опубликовано: {{ news.published_at }}</small></p>
-            <p>{{ news.content|truncatechars:200 }}</p>
-        </article>
-        <hr>
-    {% empty %}
-        <p>Новостей пока нет.</p>
-    {% endfor %}
-</body>
-</html>
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="row">
+  {% for news in news_list %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{% url 'news_detail' slug=news.slug %}" class="text-decoration-none">{{ news.title }}</a>
+          </h5>
+          <p class="card-text">{{ news.content|truncatechars:100 | safe }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
